@@ -9,6 +9,8 @@ let mediaRecorder;
 window.onload = init;
 
 function init() {
+    const apikey = prompt("Enter DeepGram Api Key")
+
   navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     console.log({ stream });
     if (!MediaRecorder.isTypeSupported("audio/webm"))
@@ -18,7 +20,7 @@ function init() {
 
   const socket = new WebSocket("wss://api.deepgram.com/v1/listen", [
     "token",
-    "455042fae4a5a6cc8c4b2e4b850abfb4654a9d47",
+    apikey,
   ]);
 
   socket.onopen = () => {
